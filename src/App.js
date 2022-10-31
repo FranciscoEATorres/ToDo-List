@@ -1,25 +1,93 @@
-import logo from './logo.svg';
-import './App.css';
+import './styles.css';
+import './global.css'
+import { IoMdAdd } from 'react-icons/io'
+import { useState } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+import { MdOutlineClose } from 'react-icons/md'
+
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	
+
+  const [task, setTask] = useState("")
+
+	const [tasks, setTasks] = useState([])
+
+	const handleAddTask = () => {
+
+		if (task === "") {
+			toast.error("Digite uma Tarefa")
+		} else {
+			const idRandom = (num) => Math.floor(Math.random() * num)
+
+			const newTask = { id: idRandom(102343), title: task, isComplete: false }
+
+			setTasks([...tasks, newTask])
+
+			setTask("")
+		}
+
+	}
+
+	const handleToggleTaskCompletion = (id) => {
+
+		const taskComplete = tasks.map(task => {
+			if (task.id === id) {
+				return { ...task, isComplete: !task.isComplete }
+			}
+
+			return task
+		})
+
+		setTasks(taskComplete)
+	}
+
+	const handleDelete = (id) => {
+		setTasks(tasks.filter((remove) => remove.id !== id))
+	}
+
+	return (
+		<div className="app">
+
+			<ToastContainer />
+			<h1>TODO LIST</h1>
+			<div className='todo'>
+				<div className='header'>
+					<div className='input-fake' >
+						<input type="text" value={task} onChange={(e) => setTask(e.target.value)} />
+					</div>
+
+					<button onClick={handleAddTask} ><IoMdAdd /></button>
+				</div>
+
+				{tasks.map((task) => (
+					<div key={task.id} className={task.isComplete ? 'task-container completed' : 'task-container'}>
+						<div className='check-and-title' >
+							<label className="checkbox-container">
+								<input
+									onClick={() => handleToggleTaskCompletion(task.id)}
+									type="checkbox"
+								/>
+
+								<p className='checkmark'></p>
+							</label>
+
+							<p>{task.title}</p>
+						</div>
+
+						<div>
+							<MdOutlineClose className='remove' onClick={() => handleDelete(task.id)} />
+						</div>	
+						
+					</div>
+				))}
+
+			</div>
+		</div>
+	);
 }
 
 export default App;
