@@ -1,3 +1,8 @@
+* {
+    display: flexbox;
+
+}
+
 .app {
     display: flex;
     justify-content: center;
@@ -10,9 +15,7 @@
     display: flex;
     flex-direction: column;
     padding: 2rem;
-
     width: 400px;
-
     border-radius: 5px;
 }
 
@@ -33,6 +36,8 @@
 .header button:hover {
     filter: brightness(0.90);
     transition: 0.4s;
+    background-color: #226c0f;
+
 }
 
 .header button svg {
@@ -58,6 +63,10 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    background-color: #e2e9e0;
+    border-radius: 5px;
+    height: 2.5rem;
+    width: 21.5rem;
 }
 
 .check-and-title {
@@ -82,6 +91,7 @@
     cursor: pointer;
     height: 0;
     width: 0;
+    
    
 }
 
@@ -93,10 +103,12 @@
     width: 25px;
     border: 1px solid rgba(0, 0, 0, 0.1);
     border-radius: 5px;
+    background-color: #fff;
 }
 
 .checkbox-container input:checked ~ .checkmark {
     background-color: #FB6C6F;
+    
 }
 
 .checkmark:after {
@@ -142,5 +154,6 @@ width: 15%;
 display: flexbox;
 position: relative;
 background-color: #42bd23;
+text-align: center;
 }
    

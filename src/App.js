@@ -10,7 +10,7 @@ import { MdOutlineClose } from 'react-icons/md'
 
 
 function App() {
-	
+		
 
   const [task, setTask] = useState("")
 
@@ -53,7 +53,7 @@ function App() {
 		<div className="app">
 
 			<ToastContainer />
-			<h1>TODO LIST</h1>
+			<h1>ToDo List</h1>
 			<div className='todo'>
 				<div className='header'>
 					<div className='input-fake' >
